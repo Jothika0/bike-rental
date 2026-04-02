@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-choice-container">
+    <div class="glass-card choice-card">
+        <h2>Welcome to Bike Rentals</h2>
+        <p>Please select your portal to continue</p>
+        
+        <div class="choice-buttons">
+            <a href="/client/login" class="btn btn-primary choice-btn">Client Login / Register</a>
+            <a href="/admin/login" class="btn btn-secondary choice-btn">Admin Login / Register</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

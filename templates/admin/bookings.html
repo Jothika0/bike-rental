@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="padding: 20px;">
+    <h2>Manage Bookings</h2>
+    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary" style="margin-bottom: 20px;">Back to Dashboard</a>
+    
+    <div class="glass-card" style="overflow-x: auto;">
+        <table style="width: 100%; text-align: left; border-collapse: collapse;">
+            <thead>
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <th style="padding: 10px;">ID</th><th>User</th><th>Bike</th><th>Date & Time</th><th>Amount (₹)</th><th>Status</th><th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in bookings %}
+                <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                    <td style="padding: 10px;">{{ booking.id }}</td>
+                    <td>{{ booking.user.name }}</td>
+                    <td>{{ booking.bike.name }}</td>
+                    <td>{{ booking.booking_date }} <br> <small style="color: var(--text-secondary);">{{ booking.start_time }} - {{ booking.end_time }}</small></td>
+                    <td>₹{{ booking.amount }}</td>
+                    <td>
+                        <span style="padding: 3px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold; background: 
+                            {% if booking.status == 'Pending' %}#eab308{% elif booking.status == 'Accepted' %}#3b82f6{% elif booking.status == 'Ongoing' %}#a855f7{% elif booking.status == 'Completed' %}#22c55e{% else %}#ef4444{% endif %}; color: white;">
+                            {{ booking.status }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if booking.status == 'Pending' %}
+                            <a href="{{ url_for('admin_update_booking', booking_id=booking.id, status='Accepted') }}" class="btn btn-success" style="padding: 5px 8px; font-size: 0.8rem; margin: 2px;">Accept</a>
+                            <a href="{{ url_for('admin_update_booking', booking_id=booking.id, status='Rejected') }}" class="btn btn-danger" style="padding: 5px 8px; font-size: 0.8rem; margin: 2px;">Reject</a>
+                        {% elif booking.status == 'Accepted' %}
+                            <a href="{{ url_for('admin_update_booking', booking_id=booking.id, status='Ongoing') }}" class="btn" style="background: #a855f7; padding: 5px 8px; font-size: 0.8rem; color: white; margin: 2px;">Mark Ongoing</a>
+                        {% elif booking.status == 'Ongoing' %}
+                            <a href="{{ url_for('admin_update_booking', booking_id=booking.id, status='Completed') }}" class="btn btn-success" style="padding: 5px 8px; font-size: 0.8rem; margin: 2px;">Mark Completed</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="7" style="padding: 10px;">No bookings found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

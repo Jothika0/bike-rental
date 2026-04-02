@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="auth-choice-container">
+    <div class="glass-card" style="max-width: 500px; width: 100%; text-align: center;">
+        <h2 style="color: var(--accent);">Complete Payment</h2>
+        <p>Your booking details have been confirmed. Proceed to pay to send the request.</p>
+        
+        <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left;">
+            <p><strong>Bike:</strong> {{ booking.bike.name }}</p>
+            <p><strong>Date:</strong> {{ booking.booking_date }}</p>
+            <p><strong>Time:</strong> {{ booking.start_time }} to {{ booking.end_time }}</p>
+            <h3 style="margin-top: 20px; text-align: right; color: var(--success);">Total Amount: ₹{{ booking.amount }}</h3>
+        </div>
+        
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">* This is a simulated payment gateway. Clicking "Pay Now" will confirm the transaction and send the request to admin.</p>
+        
+        <form method="POST">
+            <button type="submit" class="btn btn-success" style="width: 100%; padding: 15px; font-size: 1.2rem; font-weight: bold; letter-spacing: 1px;">
+                PAY ₹{{ booking.amount }} NOW
+            </button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 15px;">
+            <a href="{{ url_for('client_dashboard') }}">Cancel and return to Dashboard</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

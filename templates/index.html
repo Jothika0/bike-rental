@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="landing-container">
+    <div class="glass-card landing-card">
+        <h1 class="project-title">Bike Rental System</h1>
+        <h3 class="project-subtitle">Bike Booking & Management Platform</h3>
+        <h3 class="project-subtitle">--PRESENTED BY--</h3>
+        <div class="team-section" style="display: block; text-align: center; margin-bottom: 20px;">
+            <h4>Group Members</h4>
+            <div class="members-list" style="margin-top: 10px;">
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li style="padding: 5px 0;">P.Yeswanthi (5231411132)</li>
+                    <li style="padding: 5px 0;">S.Sri Varshitha (5231411161)</li>
+                    <li style="padding: 5px 0;">P.Krishna Sri (5231411129)</li>
+                    <li style="padding: 5px 0;">T.Satya Padma Priya(5231411168)</li>
+                    <li style="padding: 5px 0;">S.Adilakshmi(5231411155)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="team-section" style="display: block; text-align: center; margin-bottom: 40px;">
+            <h4>Guided By</h4>
+            <p style="margin: 10px 0 5px 0;">MR.T.SRIKRISHNA</p>
+
+        </div>
+
+        <a href="{{ url_for('auth_choice') }}" class="btn btn-primary proceed-btn">Proceed to App</a>
+    </div>
+</div>
+{% endblock %}

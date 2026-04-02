@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-choice-container">
+    <div class="glass-card choice-card">
+        <h2 style="color: var(--danger);">Admin Portal</h2>
+        <form method="POST" action="{{ url_for('admin_login') }}">
+            <div class="form-group">
+                <input type="text" name="username" class="form-control" placeholder="Admin Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-danger" style="width: 100%;">Secure Login</button>
+        </form>
+        <p style="margin-top: 15px;">First time admin? <a href="{{ url_for('admin_register') }}">Register here</a></p>
+    </div>
+</div>
+{% endblock %}
